@@ -45,4 +45,9 @@ public class Alumno {
         return contador/3;
     }
 
+    @Override
+    public String toString() {
+        return "{" + "" + nombre + ", nota=" + nota + '}';
+    }
+
 }

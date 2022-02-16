@@ -20,64 +20,49 @@ import java.util.Iterator;
 import java.util.Locale;
 import java.util.Scanner;
 
-
 public class Guia0java03 {
 
-   
     public static void main(String[] args) {
         Scanner leer = new Scanner(System.in, "ISO-8859-1").useDelimiter("\n").useLocale(Locale.US);
-        ArrayList <Alumno> listaAlumno= new ArrayList();
-        Integer unaNota;
+        AlumnoServicio listaAlumno = new AlumnoServicio();
+        Integer nota1;
         String nombre;
-        String termina="";
-        String alumnoBusqueda;
-        boolean seEncontro=false;
-        // do while para ingresar alumnos con sus notas
+        Integer nota2;
+        Integer nota3; 
+        String termina = "";
+    
+        System.out.println("Lista de alumnos");
+        listaAlumno.unAlumno("Ariel", 10, 3, 8);
+        listaAlumno.unAlumno("Marina", 7, 3, 8);
+        listaAlumno.unAlumno("Fatima", 6, 7, 8);
+        listaAlumno.unAlumno("Ricardo", 10, 7, 8);
+        listaAlumno.unAlumno("Martin", 5, 5, 9);
+        listaAlumno.unAlumno("Betiana", 5, 7, 8);
         do {
-            ArrayList nota= new ArrayList();
-            Alumno alumno= new Alumno();
-            int notas;
-            System.out.println("ingrese el nombre del alumno");
-            nombre=leer.next();
-            alumno.setNombre(nombre);
-            for (int i = 0; i < 3; i++) {
-                System.out.println("ingrese una nota"+(i+1));
-                notas=leer.nextInt();
-                unaNota=notas;
-                nota.add(unaNota);
-                
-            }
+        
+           
+           
+            System.out.println("ingrese Nombre");
+            nombre = leer.next();
+            System.out.println("Ingrese primer nota");
+            nota1=leer.nextInt();
+            System.out.println("Ingrese segunda nota");
+            nota2=leer.nextInt();
+            System.out.println("ingrese tercer nota");
+            nota3=leer.nextInt();
             
-            alumno.setNota(nota);
-            listaAlumno.add(alumno);
             System.out.println("quiere ingresar otro alumno?");
             termina= leer.next();
-         
+            listaAlumno.unAlumno(nombre, nota1, nota2, nota3);
             
  
         } while (termina.equalsIgnoreCase("s"));
         
-        // muestro en pantalla los alumnos ingresados
-        for (Alumno alumno: listaAlumno) {
-            System.out.println(alumno.getNombre());
-            System.out.println(alumno.getNota());
-        }
+        listaAlumno.verListado();
+        System.out.println("Ingrese el nombre de alumno para calcular su promedio");
+        listaAlumno.buscarAlumnoNota();
         
-        System.out.println("Ingrese el nombre del alumno para calcular su nota final");
-        alumnoBusqueda=leer.next();
-        Iterator <Alumno> iterador= listaAlumno.iterator();
-        while(iterador.hasNext()){
-            Alumno unAlumno=iterador.next();
-            if (unAlumno.getNombre().equals(alumnoBusqueda)) {
-                System.out.println("el promedio es: "+ unAlumno.notaFinal() );
-                seEncontro=true;
-            }
-            
-        }
-        if (!seEncontro) {
-            System.out.println("No se encontro en la lista a el alumno buscado");
-        }
-        
+       
     }
-    
+
 }
